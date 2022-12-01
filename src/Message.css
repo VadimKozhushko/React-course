@@ -1,0 +1,8 @@
+.Message-box {
+  background-color:#8c3079;
+  border: 5px solid #8c3079;
+  border-radius: 20px;
+  box-shadow: 12px 12px 2px 1px #532149;
+  padding: 40px;
+  font-size: 16px;
+}
