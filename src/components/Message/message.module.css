@@ -1,0 +1,18 @@
+.message_box {
+  background-color: #125d21;;
+  border: 5px solid #125d21;;
+  border-radius: 20px;
+  box-shadow: 12px 12px 2px 1px #0e4e1a;
+  padding: 40px;
+  font-size: 16px;
+  width: 338px;
+  box-sizing: border-box;
+}
+
+.chat_ul{
+  list-style-type:none;
+}
+
+.test {
+  text-decoration: underline;
+}
