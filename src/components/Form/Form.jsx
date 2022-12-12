@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import style from './form.module.css';
+import { TextField } from '@mui/material';
+import  Button  from '@mui/material/Button';
 
 
 export function Form ( {addMessage} ) {
@@ -13,21 +15,47 @@ export function Form ( {addMessage} ) {
       text
     })
     setText('')
+    
   }
 
-  
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.querySelector('input').focus()
+}, [text])
+
+
+
 return(
   <>
   <h1>Chat Form</h1>
       <form className={style.chat_form} onSubmit={handelSubmit}>
-        <input className={style.chat_input}
-          placeholder="введите сообщение"
-          type="text"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+      <TextField id="outlined-basic"
+        label="Введите сообщенеи"
+        variant="outlined"
+        type="text"
+        value={text}
+        noValidate
+        autoComplete='off'
+        color="success"
+        ref={inputRef}
+        onChange={(event) => setText(event.target.value)}
+        sx={{
+          marginRight: '10px'
+        }}
         />
         
-        <button className={style.chat_button} type="submit">Add message</button>
+      <Button variant="contained"
+        sx={{
+          height: '54px'
+        }}
+         color="success"
+         type="submit"
+         size="large"
+         
+         >ADD message</Button>
+        
+       
           
         
       </form>

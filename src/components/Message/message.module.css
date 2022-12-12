@@ -1,11 +1,11 @@
 .message_box {
-  background-color: #125d21;;
-  border: 5px solid #125d21;;
+  background-color: #0d4b1a;
+  border: 5px solid #0d4b1a;
   border-radius: 20px;
   box-shadow: 12px 12px 2px 1px #0e4e1a;
   padding: 40px;
   font-size: 16px;
-  width: 338px;
+  width: 434px;
   box-sizing: border-box;
 }
 
