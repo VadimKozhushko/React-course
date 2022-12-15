@@ -1,55 +1,41 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import { Message } from './components/Message/Message';
-import { Form } from './components/Form/Form';
-import { ListChats } from './components/ListChats/ListChats';
-import { Box } from '@mui/material';
+import { Routes, Route} from "react-router-dom"
+import { useState } from 'react'
+import { Header } from "./components/Header/Header"
+import { MainPage } from "./pages/MainPage"
+import { ProfilePage } from "./pages/ProfilePage"
+import { ChatsPage } from './pages/ChatsPage'
+import { ChatList } from "./components/ChatList/ChatList"
+import { Page404 } from  './pages/Page404'
 
 
 
-export function App() {
+
+
+export function App () {
   
-  const [messageList, setList] = useState([])
+ 
 
-  const addMessage = (newMessage) => {
-    setList([...messageList, newMessage])
-  }
-  
-  useEffect(() => {
-    if (messageList.length > 0 && messageList[messageList.length - 1].author === 'User') {
-      const timeout = setTimeout(() => {
-        addMessage({
-          author: 'BOT',
-          text: 'Hallow!'
-        })
-      }, 1000)
 
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [messageList])
-  
 
   return (
-    <div className="App">
-      <header className="App-header">
-      My React Homework #3
-      <Form addMessage={addMessage}/>
-      <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-around'
-      }}
-    >
-      <ListChats/>
-      <Message messageList={messageList}/>
-      </Box>
-      </header>
-      
-    </div>
-  );
+    <>
+  
+    <Routes>
+      <Route path="/" element={<Header />}>
+      <Route index element={<MainPage />}></Route>
+      <Route path="profile" element={<ProfilePage />}></Route>
+      <Route path="chats">
+        <Route index element={<ChatList />} />
+        <Route path=":chatId" element={<ChatsPage />}/>
+          </Route>
+      </Route>
+
+      <Route path="*" element={<Page404 />} />
+
+    </Routes>
+    </>
+    
+
+
+  )
 }
-
-

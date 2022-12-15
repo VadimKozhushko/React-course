@@ -35,6 +35,7 @@ return(
         variant="outlined"
         type="text"
         value={text}
+        autoFocus
         noValidate
         autoComplete='off'
         color="success"
