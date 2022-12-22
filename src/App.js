@@ -1,23 +1,17 @@
-import { Routes, Route} from "react-router-dom"
-import { useState } from 'react'
-import { Header } from "./components/Header/Header"
-import { MainPage } from "./pages/MainPage"
-import { ProfilePage } from "./pages/ProfilePage"
+import { Routes, Route } from 'react-router-dom'
+import { Header } from './components/Header/Header'
+import { MainPage } from './pages/MainPage'
+import { ProfilePage } from './pages/ProfilePage'
 import { ChatsPage } from './pages/ChatsPage'
-import { ChatList } from "./components/ChatList/ChatList"
+import { ChatList } from './components/ChatList/ChatList'
+
 import { Page404 } from  './pages/Page404'
-import { Provider } from "react-redux"
-import { store } from "./store"
-
-
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 
 export function App () {
-  
  
-
-
-
   return (
     <>
     <Provider store={store}>

@@ -2,44 +2,37 @@ import { useRef, useState, useEffect } from 'react'
 import style from './form.module.css';
 import { TextField } from '@mui/material';
 import  Button  from '@mui/material/Button';
+import { useDispatch } from 'react-redux'
+import { addMessage } from '../../store/messages/actions'
+import { useParams } from 'react-router-dom'
 
-
-export function Form ( {addMessage} ) {
-  
+export function Form() {
   const [text, setText] = useState('')
-  
-  const handelSubmit = (e) => {
+  const dispatch = useDispatch()
+  const { chatId } = useParams()
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-    addMessage({
-      author: 'User',
-      text
-    })
-    setText('')
     
+    dispatch(addMessage(chatId, text))
+
+    setText('')
   }
-
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.querySelector('input').focus()
-}, [text])
-
 
 
 return(
   <>
   <h1>Chat Form</h1>
-      <form className={style.chat_form} onSubmit={handelSubmit}>
+      <form className={style.chat_form} onSubmit={handleSubmit}>
       <TextField id="outlined-basic"
+      inputRef={input => input && input.focus()}
         label="Введите сообщенеи"
         variant="outlined"
         type="text"
         value={text}
-        autoFocus
         noValidate
         autoComplete='off'
         color="success"
-        ref={inputRef}
         onChange={(event) => setText(event.target.value)}
         sx={{
           marginRight: '10px'

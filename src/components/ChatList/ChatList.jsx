@@ -1,23 +1,32 @@
 
 import { NavLink } from 'react-router-dom';
-
 import {
   Box,
   ListSubheader,
   List,
   ListItemButton,
   Typography } from '@mui/material';
-import chats from './chats';
+import { useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { addChat, deleteChat } from '../../store/messages/actions'
+import { selectChat } from '../../store/messages/selectors'
 
-console.log(chats);
 
 
+export function ChatList() {
+  const [value, setValue] = useState('')
+  const dispatch = useDispatch()
+  const chats = useSelector(selectChat,
+   (prev, next) => prev.length === next.length)
 
-export function ChatList () {
+  console.log('update chats', chats)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(addChat(value))
     
+  }
     
-  
-
   return (
     <>
     <Box
@@ -52,12 +61,12 @@ export function ChatList () {
         }
     >
         {
-            chats.map(item => {
+            chats.map(chat => {
                 return (
                   <ListItemButton
                                 component={NavLink}
-                                to={`/chats/${item.id}`}
-                                key={item.id}
+                                to={`/chats/${chat.name}`}
+                                key={chats.id}
                             
                                 sx={{
                                     borderBottom: '3px solid transparent',
@@ -73,15 +82,25 @@ export function ChatList () {
                                         color: 'primary.contrastText',
                                     }}
                                 >
-                                    {item.name}
+                                    {chat.name}
                                 </Typography>
-
+                                <button onClick={() => dispatch(deleteChat(chat.name))}>X</button>
                             </ListItemButton>
                 )
             })
         }
     </List>
 </Box>
+<h1>ChatList</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <button type="submit">Create Chat</button>
+      </form>
+
 </>
 )
 
