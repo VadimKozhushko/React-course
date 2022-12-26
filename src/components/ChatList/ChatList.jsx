@@ -66,7 +66,7 @@ export function ChatList() {
                   <ListItemButton
                                 component={NavLink}
                                 to={`/chats/${chat.name}`}
-                                key={chats.id}
+                                key={chat.id}
                             
                                 sx={{
                                     borderBottom: '3px solid transparent',

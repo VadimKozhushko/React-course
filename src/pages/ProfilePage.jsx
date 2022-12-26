@@ -6,6 +6,7 @@ export function ProfilePage () {
 
 
   const {showName, name} = useSelector((store) => store)
+  console.log({name})
   const [value, setValue] = useState('')
   // const [checkBox, setCheckBox] = useState(false)
 

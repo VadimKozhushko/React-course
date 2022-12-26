@@ -8,6 +8,8 @@ import { ChatList } from './components/ChatList/ChatList'
 import { Page404 } from  './pages/Page404'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor } from './store'
 
 
 export function App () {
@@ -15,6 +17,7 @@ export function App () {
   return (
     <>
     <Provider store={store}>
+    <PersistGate persistor={persistor}>
     <Routes>
       <Route path="/" element={<Header />}>
       <Route index element={<MainPage />}></Route>
@@ -28,6 +31,7 @@ export function App () {
       <Route path="*" element={<Page404 />} />
 
     </Routes>
+    </PersistGate>
     </Provider>
     </>
     

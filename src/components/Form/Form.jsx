@@ -3,8 +3,9 @@ import style from './form.module.css';
 import { TextField } from '@mui/material';
 import  Button  from '@mui/material/Button';
 import { useDispatch } from 'react-redux'
-import { addMessage } from '../../store/messages/actions'
+import { addMessage, addMessageWithBot } from '../../store/messages/actions'
 import { useParams } from 'react-router-dom'
+import { AUTHOR } from '../../constants'
 
 export function Form() {
   const [text, setText] = useState('')
@@ -14,7 +15,10 @@ export function Form() {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    dispatch(addMessage(chatId, text))
+    dispatch(addMessageWithBot(chatId, {
+      author: AUTHOR.user,
+      text
+    }))
 
     setText('')
   }

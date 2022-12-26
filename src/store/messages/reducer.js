@@ -35,7 +35,7 @@ export const messagesReducer = (state = initailState, action) => {
           ...state[payload.chatName],
           {
             author: AUTHOR.user,
-            text: payload.text
+            text: payload.text.text
           }
         ],
       }
