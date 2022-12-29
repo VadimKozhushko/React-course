@@ -1,0 +1,4 @@
+export const GET_GISTS = "GET_GISTS";
+export const GET_GISTS_REQUEST = "GET_GISTS_REQUEST";
+export const GET_GISTS_SUCCESS = "GET_GISTS_SUCCESS";
+export const GET_GISTS_FAILURE = "GET_GISTS_FAILURE";

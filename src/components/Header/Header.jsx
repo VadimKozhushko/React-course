@@ -16,6 +16,9 @@ export function Header () {
       <li><NavLink to='/chats'
       style={({isActive}) => ({color: isActive ? 'red' : 'blue'})}
       >Chats</NavLink></li>
+      <li><NavLink to='/gists'
+      style={({isActive}) => ({color: isActive ? 'red' : 'blue'})}
+      >Gists</NavLink></li>
     </ul>
    </nav>
   </header> 
