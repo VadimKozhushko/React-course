@@ -10,22 +10,28 @@ import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { addChat, deleteChat } from '../../store/messages/actions'
 import { selectChat } from '../../store/messages/selectors'
+import { push, set, remove } from "firebase/database";
+import { messagesRef } from '../../services/firebase';
 
 
 
-export function ChatList() {
-  const [value, setValue] = useState('')
-  const dispatch = useDispatch()
-  const chats = useSelector(selectChat,
-   (prev, next) => prev.length === next.length)
-
-  console.log('update chats', chats)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(addChat(value))
+export function ChatList({messageDB, chats}) {
+    const [value, setValue] = useState('')
+    const dispatch = useDispatch()
     
-  }
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      dispatch(addChat(value))
+  
+      set(messagesRef, {
+        ...messageDB,
+        [value]: {
+          name: value
+        }
+      })
+      
+    }
+  
     
   return (
     <>

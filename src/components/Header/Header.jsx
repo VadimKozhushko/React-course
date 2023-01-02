@@ -1,7 +1,26 @@
 import { Outlet, Link, NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { logOut } from '../../services/firebase'
 
 import styles from './Header.module.css'
+
 export function Header () {
+
+  const navigate = useNavigate()
+
+  const isAuth = useSelector((store) => store.profile.isAuth)
+
+  const handleLogin = () => {
+    navigate('/signin')
+  }
+  const handleSignUp = () => {
+    navigate('/signup')
+  }
+  const handleLogout = async () => {
+    await logOut()
+  }
+
   return (
   <>
   <header>
@@ -20,6 +39,17 @@ export function Header () {
       style={({isActive}) => ({color: isActive ? 'red' : 'blue'})}
       >Gists</NavLink></li>
     </ul>
+      {!isAuth && (
+              <>
+                <button onClick={handleLogin}>login</button>
+                <button onClick={handleSignUp}>sing up</button>
+              </>
+            )}
+            {isAuth && (
+              <>
+                <button onClick={handleLogout}>logout</button>
+              </>
+            )}
    </nav>
   </header> 
   <main>

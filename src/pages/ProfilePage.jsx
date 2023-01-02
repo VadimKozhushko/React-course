@@ -1,66 +1,29 @@
-import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import * as types from '../store/profile/types'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeName, toggleProfile } from '../store/profile/actions'
+import { selectName, selectVisible } from '../store/profile/selectors'
 
-export function ProfilePage () {
-
-
-  const {showName, name} = useSelector((store) => store)
-  console.log({name})
+export function ProfilePage() {
+  const name = useSelector(selectName)
+  const visible = useSelector(selectVisible)
   const [value, setValue] = useState('')
-  // const [checkBox, setCheckBox] = useState(false)
 
   const dispatch = useDispatch()
 
 
-
-  const hendleChange = () => {
-    dispatch({type: types.CHANGE_NAME, payload: value})
-    // console.log(value)
-    setValue('')
-  }
-
-  const handleCheckbox = ({target}) => {
-
-    if (target.checked) {
-      dispatch({type: types.CHECKED, payload: true})
-  } else {
-      dispatch({type: types.CHECKED, payload: false})
-  }
-    
-
-  }
-
- 
-  
   return (
     <>
-    <h1>ProfilePage</h1>
-
-
-    {showName && <h2>{name}</h2>}
-    
-    <input 
-     type="checkbox"
-     checked={showName}
-     onChange={handleCheckbox} />
-
-
-
-
-    <hr />
-
-
-    <input 
-      type="text" 
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
-    <button onClick={hendleChange} >Change name</button>
-
+      <h1>Profile Page</h1>
+      {visible && <h2>{name}</h2>}
+      <input type="checkbox" checked={visible} readOnly />
+      <button onClick={() => dispatch(toggleProfile())} >change visible</button>
+      <br />
+      <input 
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button onClick={() => dispatch(changeName(value))}>Change name</button>
     </>
-    
-
-
   )
 }

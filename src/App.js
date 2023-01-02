@@ -6,38 +6,73 @@ import { ChatsPage } from './pages/ChatsPage'
 import { ChatList } from './components/ChatList/ChatList'
 import { GistsList } from './pages/Gists'
 import { Page404 } from  './pages/Page404'
-import { Provider } from 'react-redux'
-import { store } from './store'
+
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor } from './store'
-
-
+import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { auth } from './store/profile/actions'
+import { firebaseAuth, messagesRef } from './services/firebase'
+import { onValue } from "firebase/database"
+import { PrivateRoute } from './utils/PriviteRoute'
+import { PublicRoute } from './utils/PublicRoute'
+import { SingIn } from './pages/SingIn'
+import { SignUp } from './pages/SingUp'
 
 export function App () {
- 
+  const dispatch = useDispatch()
+
+  const [messageDB, setMessageDB] = useState({})
+  const [chats, setChats] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(auth(true))
+      } else {
+        dispatch(auth(false))
+      }
+    })
+    return unsubscribe
+  }, [])
+
+  useEffect(() => {
+    onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val()
+      const newChats = Object.entries(data).map((item) => ({
+        name: item[0],
+        message: item[1].messageList
+      }))
+      setMessageDB(data)
+      setChats(newChats)
+    })
+  }, [])
+
   return (
     <>
-    <Provider store={store}>
-    <PersistGate persistor={persistor}>
-    <Routes>
-      <Route path="/" element={<Header />}>
-      <Route index element={<MainPage />}></Route>
-      <Route path="profile" element={<ProfilePage />}></Route>
-      <Route path="gists" element={<GistsList />}></Route>
-      <Route path="chats">
-        <Route index element={<ChatList />} />
-        <Route path=":chatId" element={<ChatsPage />}/>
-          </Route>
-      </Route>
-      
-      <Route path="*" element={<Page404 />} />
+      <PersistGate persistor={persistor}>
+          <Routes>
+            <Route path='/' element={<Header />}>
+              <Route index element={<MainPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="chats" element={<PrivateRoute />}>
+                <Route
+                  index
+                  element={<ChatList chats={chats} messageDB={messageDB} />}
+                />
+                <Route
+                  path=":chatId"
+                  element={<ChatsPage chats={chats} messageDB={messageDB} />}
+                />
+              </Route>
+              <Route path="gists" element={<GistsList />}></Route>
+              <Route path="signin" element={<PublicRoute component={<SingIn />} />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
 
-    </Routes>
-    </PersistGate>
-    </Provider>
+            <Route path="*" element={<Page404></Page404>}/>
+          </Routes>
+      </PersistGate>
     </>
-    
-
-
   )
 }

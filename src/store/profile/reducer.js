@@ -1,32 +1,32 @@
 import * as types from './types'
 
-
 const initialState = {
   name: 'Goga',
-  showName: true
+  visible: true,
+  isAuth: false
 }
 
-
 export const profileReducer = (state = initialState, action) => {
-  const {type, payload} = action
+  const { type, payload } = action
   switch (type) {
     case types.CHANGE_NAME:
       return {
         ...state,
         name: payload
       }
-    case types.CHECKED:
+    case types.TOGGLE_PROFILE:
       return {
         ...state,
-        showName: payload
+        visible: !state.visible
       }
 
+    case types.IS_AUTH:
+      return {
+        ...state,
+        isAuth: payload
+      }
 
-
-     
-  
     default:
       return state
   }
-
 }
