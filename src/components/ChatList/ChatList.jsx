@@ -11,26 +11,39 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addChat, deleteChat } from '../../store/messages/actions'
 import { selectChat } from '../../store/messages/selectors'
 import { push, set, remove } from "firebase/database";
-import { messagesRef } from '../../services/firebase';
+import { messagesRef, getChatById, getMessageListById } from '../../services/firebase';
 
 
 
-export function ChatList({messageDB, chats}) {
+export function ChatList({messagesDB, chats}) {
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
-    
+  
+    console.log('update chats', chats)
+  
     const handleSubmit = (e) => {
       e.preventDefault()
       dispatch(addChat(value))
   
       set(messagesRef, {
-        ...messageDB,
+        ...messagesDB,
         [value]: {
           name: value
         }
       })
-      
+  
+      push(getMessageListById(value), {
+        text: 'Chat has been created',
+        author: 'Admin',
+      });
+  
+      setValue('');
     }
+  
+    console.log('chats', chats)
+    const handleDeleteChat = (chatId) => {
+      remove(getChatById(chatId));
+    };
   
     
   return (
@@ -90,7 +103,7 @@ export function ChatList({messageDB, chats}) {
                                 >
                                     {chat.name}
                                 </Typography>
-                                <button onClick={() => dispatch(deleteChat(chat.name))}>X</button>
+                                <button onClick={() => dispatch(handleDeleteChat(chat.name))}>X</button>
                             </ListItemButton>
                 )
             })

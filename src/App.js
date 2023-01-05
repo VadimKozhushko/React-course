@@ -22,7 +22,7 @@ import { SignUp } from './pages/SingUp'
 export function App () {
   const dispatch = useDispatch()
 
-  const [messageDB, setMessageDB] = useState({})
+  const [messagesDB, setMessagesDB] = useState({})
   const [chats, setChats] = useState([])
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function App () {
         name: item[0],
         message: item[1].messageList
       }))
-      setMessageDB(data)
+      setMessagesDB(data)
       setChats(newChats)
     })
   }, [])
@@ -58,11 +58,11 @@ export function App () {
               <Route path="chats" element={<PrivateRoute />}>
                 <Route
                   index
-                  element={<ChatList chats={chats} messageDB={messageDB} />}
+                  element={<ChatList chats={chats} messagesDB={messagesDB} />}
                 />
                 <Route
                   path=":chatId"
-                  element={<ChatsPage chats={chats} messageDB={messageDB} />}
+                  element={<ChatsPage chats={chats} messagesDB={messagesDB} />}
                 />
               </Route>
               <Route path="gists" element={<GistsList />}></Route>
