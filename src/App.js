@@ -41,7 +41,7 @@ export function App () {
       const data = snapshot.val()
       const newChats = Object.entries(data).map((item) => ({
         name: item[0],
-        message: item[1].messageList
+        messages: item[1].messageList
       }))
       setMessagesDB(data)
       setChats(newChats)
