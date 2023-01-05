@@ -1,0 +1,22 @@
+.App {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+
+}
+
+
+.App-header {
+  background-color: #25442b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+
