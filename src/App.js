@@ -18,6 +18,9 @@ import { PrivateRoute } from './utils/PriviteRoute'
 import { PublicRoute } from './utils/PublicRoute'
 import { SingIn } from './pages/SingIn'
 import { SignUp } from './pages/SingUp'
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { BrowserRouter } from 'react-router-dom'
 
 export function App () {
   const dispatch = useDispatch()
@@ -76,3 +79,15 @@ export function App () {
     </>
   )
 }
+
+let AppForTest = (props) => {
+  return (
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+  )
+}
+
+export default AppForTest
