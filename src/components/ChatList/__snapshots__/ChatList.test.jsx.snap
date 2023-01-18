@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing ChatList should create ChatList 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiBox-root css-10vrplw"
+      >
+        <nav
+          aria-labelledby="nested-list-subheader"
+          class="MuiList-root MuiList-padding MuiList-subheader css-nj6nf1-MuiList-root"
+        >
+          <div
+            class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-1sql39t-MuiListSubheader-root"
+            id="nested-list-subheader"
+          >
+            Chats
+          </div>
+        </nav>
+      </div>
+      <h1>
+        ChatList
+      </h1>
+      <form>
+        <input
+          type="text"
+          value=""
+        />
+        <button
+          type="submit"
+        >
+          Create Chat
+        </button>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiBox-root css-10vrplw"
+    >
+      <nav
+        aria-labelledby="nested-list-subheader"
+        class="MuiList-root MuiList-padding MuiList-subheader css-nj6nf1-MuiList-root"
+      >
+        <div
+          class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-1sql39t-MuiListSubheader-root"
+          id="nested-list-subheader"
+        >
+          Chats
+        </div>
+      </nav>
+    </div>
+    <h1>
+      ChatList
+    </h1>
+    <form>
+      <input
+        type="text"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Create Chat
+      </button>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
